@@ -17,3 +17,7 @@ indent_size = 4
 
 [makefile]
 indent_style = tab
+
+[*.yaml]
+indent_style = space
+indent_size = 2
