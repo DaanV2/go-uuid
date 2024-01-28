@@ -16,11 +16,18 @@ func ValidateStringUUID(s string) error {
 	}
 
 	for i, c := range s {
+		if i == 8 || i == 13 || i == 18 || i == 23 {
+			if c != '-' {
+				return fmt.Errorf("invalid character '%c' at position %d, expected '-'", c, i)
+			}
+
+			continue
+		}
+
 		switch {
 		case c >= '0' && c <= '9':
 		case c >= 'a' && c <= 'f':
 		case c >= 'A' && c <= 'F':
-		case c == '-':
 		default:
 			return fmt.Errorf("invalid character '%c' at position %d", c, i)
 		}

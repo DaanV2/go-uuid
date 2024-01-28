@@ -1,7 +1,6 @@
 package uuid
 
 import (
-	"crypto/md5"
 	"crypto/sha1"
 )
 
@@ -41,7 +40,7 @@ func (v5) NewString(toHash []byte) string {
 
 // NewBatch returns a batch of UUID version 4
 func (v5) NewBatch(toHash []byte) []UUID {
-	n := len(toHash) / md5.Size
+	n := len(toHash) / sha1.Size
 
 	return V5.NewBatchWithSize(toHash, n)
 }
@@ -53,12 +52,12 @@ func (v5) NewBatchWithSize(toHash []byte, n int) []UUID {
 		n = max
 	}
 
-	data := make([]byte, 0, n*TOTAL_BYTES)
+	data := make([]byte, 0, n*sha1.Size)
 	for i := 0; i < n; i++ {
 		s := i * sha1.Size
 		e := s + sha1.Size
 		d := sha1.Sum(toHash[s:e])
-		data = append(data, d[:16]...)
+		data = append(data, d[:]...)
 	}
 
 	return createBatchUUID(data, V5.Version(), V5.Variant())

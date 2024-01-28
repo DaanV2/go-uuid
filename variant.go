@@ -29,13 +29,13 @@ var (
 func (v Variant) String() string {
 	switch v {
 	case Variant0:
-		return "V0"
+		return "v0"
 	case Variant1:
-		return "V1"
+		return "v1"
 	case Variant2:
-		return "V2"
+		return "v2"
 	case Variant3:
-		return "V3"
+		return "v3"
 	default:
 		return "unknown"
 	}
@@ -76,7 +76,7 @@ func VariantFromValue(value int) (Variant, error) {
 
 // getVariant returns the variant of the UUID.
 func getVariant(u UUID) Variant {
-	data := u[VERSION_BYTE_INDEX]
+	data := u[VARIANT_BYTE_INDEX]
 
 	if data & getVariantMask(Variant0) == byte(Variant0) {
 		return Variant0

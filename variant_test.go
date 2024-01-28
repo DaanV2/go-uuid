@@ -8,10 +8,10 @@ import (
 )
 
 func Test_Variant_String(t *testing.T) {
-	require.Equal(t, "V0", uuid.Variant0.String())
-	require.Equal(t, "V1", uuid.Variant1.String())
-	require.Equal(t, "V2", uuid.Variant2.String())
-	require.Equal(t, "V3", uuid.Variant3.String())
+	require.Equal(t, "v0", uuid.Variant0.String())
+	require.Equal(t, "v1", uuid.Variant1.String())
+	require.Equal(t, "v2", uuid.Variant2.String())
+	require.Equal(t, "v3", uuid.Variant3.String())
 	require.Equal(t, "unknown", uuid.Variant(4).String())
 }
 
@@ -20,6 +20,7 @@ func Test_Variant_Value(t *testing.T) {
 	require.Equal(t, 1, uuid.Variant1.Value())
 	require.Equal(t, 2, uuid.Variant2.Value())
 	require.Equal(t, 3, uuid.Variant3.Value())
+	require.Equal(t, 0, uuid.Variant(4).Value())
 	require.Equal(t, 0, uuid.Variant(0).Value())
 }
 

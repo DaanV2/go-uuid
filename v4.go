@@ -26,7 +26,10 @@ func (c v4) New() UUID {
 	var buf [16]byte
 	c.fill(buf[:])
 
-	return createUUID(buf, V4.Version(), V4.Variant())
+	version := V4.Version()
+	variant := V4.Variant()
+
+	return createUUID(buf, version, variant)
 }
 
 // NewHex returns a new UUID version 4 as a hex string

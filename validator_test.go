@@ -40,3 +40,14 @@ func Fuzz_IsValidStringUUID(f *testing.F) {
 		require.True(t, result)
 	})
 }
+
+// Expect_Valid_UUID asserts that the given UUID is valid.
+func Expect_Valid_UUID(t *testing.T, u uuid.UUID, version uuid.Version, variant uuid.Variant) {
+	t.Log("UUID", u)
+	require.Equal(t, len(u.Bytes()), 16)
+	require.Equal(t, version, u.Version())
+	require.Equal(t, variant, u.Variant())
+
+	err := uuid.ValidateStringUUID(u.String())
+	require.NoError(t, err)
+}
