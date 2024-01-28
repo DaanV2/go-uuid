@@ -1,4 +1,4 @@
 *.o
 *.exe
 
-reports/
+reports/coverage.out
