@@ -1,7 +1,14 @@
 package uuid
 
-func FromBytes(b [16]byte) UUID {
+import "errors"
+
+// FromBytes returns a UUID from a byte slice.
+func FromBytes(data []byte) (UUID, error) {
+	if len(data) != 16 {
+		return Empty(), errors.New("invalid byte slice length")
+	}
+
 	var result UUID
-	_ = copy(result[:], b[:])
-	return result
+	_ = copy(result[:], data[:])
+	return result, nil
 }
