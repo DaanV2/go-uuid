@@ -7,6 +7,16 @@ var V4 v4
 
 type v4 struct{}
 
+// Version returns the current version of this generator
+func (v4) Version() Version {
+	return Version4
+}
+
+// Variant returns the current variant of this generator
+func (v4) Variant() Variant {
+	return Variant1
+}
+
 func (v4) fill(buf []byte) {
 	_, _ = rand.Read(buf)
 }
@@ -16,7 +26,7 @@ func (c v4) New() UUID {
 	var buf [16]byte
 	c.fill(buf[:])
 
-	return createUUID(buf, Version4, Variant1)
+	return createUUID(buf, V4.Version(), V4.Variant())
 }
 
 // NewHex returns a new UUID version 4 as a hex string
@@ -34,5 +44,5 @@ func (c v4) NewBatch(n int) []UUID {
 	buf := make([]byte, 16*n)
 	c.fill(buf)
 
-	return createBatchUUID(buf, Version4, Variant1)
+	return createBatchUUID(buf, V4.Version(), V4.Variant())
 }
