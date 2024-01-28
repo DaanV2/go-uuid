@@ -2,8 +2,10 @@ name: Pipeline
 on:
   push:
     branches: [main]
+    paths: ["**.go", "go.mod", "go.sum"]
   pull_request:
     branches: [main]
+    paths: ["**.go", "go.mod", "go.sum"]
   workflow_dispatch:
 
 jobs:
