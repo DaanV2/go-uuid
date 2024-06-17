@@ -23,3 +23,8 @@ u := uuid.V4.NewBatch(10)
 
 ```
 
+## Install
+
+```bash
+go get github.com/DaanV2/go-uuid
+```
