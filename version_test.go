@@ -13,6 +13,9 @@ func Test_Version_String(t *testing.T) {
 	require.Equal(t, "v3", uuid.Version3.String())
 	require.Equal(t, "v4", uuid.Version4.String())
 	require.Equal(t, "v5", uuid.Version5.String())
+	require.Equal(t, "v6", uuid.Version6.String())
+	require.Equal(t, "v7", uuid.Version7.String())
+	require.Equal(t, "v8", uuid.Version8.String())
 	require.Equal(t, "unknown", uuid.Version(0).String())
 }
 
@@ -22,6 +25,9 @@ func Test_Version_Value(t *testing.T) {
 	require.Equal(t, 3, uuid.Version3.Value())
 	require.Equal(t, 4, uuid.Version4.Value())
 	require.Equal(t, 5, uuid.Version5.Value())
+	require.Equal(t, 6, uuid.Version6.Value())
+	require.Equal(t, 7, uuid.Version7.Value())
+	require.Equal(t, 8, uuid.Version8.Value())
 	require.Equal(t, 0, uuid.Version(0).Value())
 }
 
@@ -37,6 +43,9 @@ func Test_VersionFromValue(t *testing.T) {
 	test(3, uuid.Version3)
 	test(4, uuid.Version4)
 	test(5, uuid.Version5)
+	test(6, uuid.Version6)
+	test(7, uuid.Version7)
+	test(8, uuid.Version8)
 }
 
 func Test_VersionFromValue_Error(t *testing.T) {
@@ -47,5 +56,5 @@ func Test_VersionFromValue_Error(t *testing.T) {
 	}
 
 	test(0)
-	test(6)
+	test(9)
 }

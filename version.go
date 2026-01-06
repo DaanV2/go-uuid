@@ -19,6 +19,12 @@ const (
 	Version4 Version = 0b0100_0000
 	// V5 is the version that hashes (SHA1) given data into an UUID
 	Version5 Version = 0b0101_0000
+	// V6 is the version that is made from the reordered timestamp and MACAddress (RFC 9562)
+	Version6 Version = 0b0110_0000
+	// V7 is the version that is made from Unix timestamp with random data (RFC 9562)
+	Version7 Version = 0b0111_0000
+	// V8 is the version for custom/vendor-specific UUID format (RFC 9562)
+	Version8 Version = 0b1000_0000
 )
 
 var (
@@ -39,6 +45,12 @@ func (v Version) String() string {
 		return "v4"
 	case Version5:
 		return "v5"
+	case Version6:
+		return "v6"
+	case Version7:
+		return "v7"
+	case Version8:
+		return "v8"
 	default:
 		return "unknown"
 	}
@@ -63,6 +75,12 @@ func VersionFromValue(value int) (Version, error) {
 		return Version4, nil
 	case 5:
 		return Version5, nil
+	case 6:
+		return Version6, nil
+	case 7:
+		return Version7, nil
+	case 8:
+		return Version8, nil
 	}
 
 	return Version1, ErrInvalidVersion
