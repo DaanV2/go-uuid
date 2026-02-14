@@ -28,7 +28,7 @@ func Test_IsValidStringUUID(t *testing.T) {
 func Fuzz_IsValidStringUUID(f *testing.F) {
 	rnd := rand.New(rand.NewSource(0))
 
-	for i := 0; i < 50; i++ {
+	for range 50 {
 		b := make([]byte, 16)
 		_, _ = rnd.Read(b)
 		u, _ := uuid.FromBytes(b)

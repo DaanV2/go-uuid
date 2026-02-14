@@ -25,7 +25,7 @@ func Test_V6_New(t *testing.T) {
 func Test_V6_Multiple_UUIDs_Are_Ordered(t *testing.T) {
 	// Generate multiple UUIDs and verify they are time-ordered
 	uuids := make([]uuid.UUID, 10)
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		u, err := uuid.V6.New()
 		require.NoError(t, err)
 		uuids[i] = u

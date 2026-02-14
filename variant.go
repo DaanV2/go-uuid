@@ -78,16 +78,16 @@ func VariantFromValue(value int) (Variant, error) {
 func getVariant(u UUID) Variant {
 	data := u[VARIANT_BYTE_INDEX]
 
-	if data & getVariantMask(Variant0) == byte(Variant0) {
+	if data&getVariantMask(Variant0) == byte(Variant0) {
 		return Variant0
 	}
-	if data & getVariantMask(Variant1) == byte(Variant1) {
+	if data&getVariantMask(Variant1) == byte(Variant1) {
 		return Variant1
 	}
-	if data & getVariantMask(Variant2) == byte(Variant2) {
+	if data&getVariantMask(Variant2) == byte(Variant2) {
 		return Variant2
 	}
-	if data & getVariantMask(Variant3) == byte(Variant3) {
+	if data&getVariantMask(Variant3) == byte(Variant3) {
 		return Variant3
 	}
 
@@ -102,10 +102,7 @@ func getVariantMask(v Variant) byte {
 	// 1 1 1. 3 bits => 0b1110_0000
 
 	c := util.PopCount(uint(v))
-	r := c + 1
-	if r > 3 {
-		r = 3
-	}
+	r := min(c+1, 3)
 
 	baseMask := 0b1111_0000_0000
 	outputMask := 0b1110_0000

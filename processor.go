@@ -11,7 +11,7 @@ func createBatchUUID(bytes []byte, version Version, variant Variant) []UUID {
 	c := len(bytes) / TOTAL_BYTES
 	uuids := make([]UUID, c)
 
-	for i := 0; i < c; i++ {
+	for i := range c {
 		var data [TOTAL_BYTES]byte
 		copy(data[:], bytes[i*TOTAL_BYTES:])
 

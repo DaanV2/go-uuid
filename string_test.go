@@ -13,7 +13,7 @@ import (
 func Fuzz_String(f *testing.F) {
 	rnd := rand.New(rand.NewSource(0))
 
-	gen_case := func (length int) {
+	gen_case := func(length int) {
 		b := make([]byte, length)
 		_, _ = rnd.Read(b)
 		f.Add(b)
@@ -23,11 +23,11 @@ func Fuzz_String(f *testing.F) {
 	gen_case(15)
 	gen_case(17)
 
-	for i := 0; i < 25; i++ {
+	for range 25 {
 		gen_case(16)
 	}
 
-	for i := 0; i < 25; i++ {
+	for range 25 {
 		length := (rnd.Int() % 8) + 12
 		gen_case(length)
 	}
@@ -54,7 +54,7 @@ func Fuzz_String(f *testing.F) {
 func Fuzz_StringHex(f *testing.F) {
 	rnd := rand.New(rand.NewSource(0))
 
-	gen_case := func (length int) {
+	gen_case := func(length int) {
 		b := make([]byte, length)
 		_, _ = rnd.Read(b)
 		f.Add(b)
@@ -64,11 +64,11 @@ func Fuzz_StringHex(f *testing.F) {
 	gen_case(15)
 	gen_case(17)
 
-	for i := 0; i < 25; i++ {
+	for range 25 {
 		gen_case(16)
 	}
 
-	for i := 0; i < 25; i++ {
+	for range 25 {
 		length := (rnd.Int() % 8) + 12
 		gen_case(length)
 	}
@@ -93,7 +93,7 @@ func Fuzz_StringHex(f *testing.F) {
 
 func Benchmark_StringHex(b *testing.B) {
 	rnd := rand.New(rand.NewSource(0))
-	
+
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		b := make([]byte, 16)

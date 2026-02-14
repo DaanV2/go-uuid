@@ -51,7 +51,7 @@ func PopCount_Test[T util.Number](values []testCase) func(t *testing.T) {
 func Fuzz_PopCount(f *testing.F) {
 	rnd := rand.New(rand.NewSource(0))
 
-	for i := 0; i < 50; i++ {
+	for range 50 {
 		f.Add(rnd.Uint64())
 	}
 

@@ -74,7 +74,7 @@ func Test_V7_Time_Ordering(t *testing.T) {
 func Test_V7_Multiple_UUIDs_Are_Ordered(t *testing.T) {
 	// Generate multiple UUIDs with small delays
 	uuids := make([]uuid.UUID, 10)
-	for i := 0; i < 10; i++ {
+	for i := range 10 {
 		uuids[i] = uuid.V7.New()
 		time.Sleep(time.Millisecond) // Ensure different timestamps
 	}

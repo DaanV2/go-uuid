@@ -31,14 +31,14 @@ func (v7) From(t time.Time) UUID {
 	// unix_ts_ms (48 bits) - Unix timestamp in milliseconds
 	// ver (4 bits) - version field
 	// rand_a (12 bits) - random data
-	// var (2 bits) - variant field  
+	// var (2 bits) - variant field
 	// rand_b (62 bits) - random data
 
 	var data [16]byte
 
 	// Get Unix timestamp in milliseconds (48 bits)
 	unixMs := uint64(t.UnixMilli())
-	
+
 	// Place timestamp in first 48 bits (6 bytes)
 	binary.BigEndian.PutUint64(data[0:], unixMs<<16)
 
@@ -61,7 +61,7 @@ func (v7) NewString() string {
 // NewBatch returns a batch of UUID version 7
 func (v7) NewBatch(n int) []UUID {
 	uuids := make([]UUID, n)
-	for i := 0; i < n; i++ {
+	for i := range n {
 		uuids[i] = V7.New()
 	}
 	return uuids
