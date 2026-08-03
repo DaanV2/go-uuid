@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// V6 is a UUID version 6 generator, a reordered timestamp UUID (RFC 9562)
 var V6 v6
 
 type v6 struct{}

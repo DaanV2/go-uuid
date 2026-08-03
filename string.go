@@ -12,6 +12,12 @@ func (u UUID) StringHex() string {
 	return string(data[:])
 }
 
+// URN returns the RFC 4122 URN representation of the UUID, prefixed with
+// "urn:uuid:", for example urn:uuid:00000000-0000-0000-0000-000000000000.
+func (u UUID) URN() string {
+	return "urn:uuid:" + u.String()
+}
+
 // bytesToString converts a byte array of uuid data to a string.
 func bytesToString(b [16]byte) string {
 	hexData := bytesToHexData(b)

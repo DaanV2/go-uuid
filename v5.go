@@ -4,7 +4,7 @@ import (
 	"crypto/sha1"
 )
 
-// V5 is a UUID version 4 generator, using SHA-1 hashing
+// V5 is a UUID version 5 generator, using SHA-1 hashing
 var V5 v5
 
 type v5 struct{}
@@ -19,6 +19,7 @@ func (v5) Variant() Variant {
 	return Variant1
 }
 
+// New returns a new UUID version 5 from the SHA-1 hash of the given data
 func (v5) New(toHash []byte) UUID {
 	data := sha1.Sum(toHash)
 	// 20 bytes to 16 bytes
@@ -28,24 +29,24 @@ func (v5) New(toHash []byte) UUID {
 	return createUUID(data16, V5.Version(), V5.Variant())
 }
 
-// NewHex returns a new UUID version 4 as a hex string
+// NewHex returns a new UUID version 5 as a hex string
 func (v5) NewHex(toHash []byte) string {
 	return V5.New(toHash).StringHex()
 }
 
-// NewString returns a new UUID version 4 as a string
+// NewString returns a new UUID version 5 as a string
 func (v5) NewString(toHash []byte) string {
 	return V5.New(toHash).String()
 }
 
-// NewBatch returns a batch of UUID version 4
+// NewBatch returns a batch of UUID version 5
 func (v5) NewBatch(toHash []byte) []UUID {
 	n := len(toHash) / sha1.Size
 
 	return V5.NewBatchWithSize(toHash, n)
 }
 
-// NewBatchWithSize returns a batch of UUID version 4 with a specific size
+// NewBatchWithSize returns a batch of UUID version 5 with a specific size
 func (v5) NewBatchWithSize(toHash []byte, n int) []UUID {
 	max := len(toHash) / sha1.Size
 	if n > max {

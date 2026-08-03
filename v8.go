@@ -2,6 +2,7 @@ package uuid
 
 import "crypto/rand"
 
+// V8 is a UUID version 8 generator, for custom/vendor-specific UUIDs (RFC 9562)
 var V8 v8
 
 type v8 struct{}
