@@ -12,6 +12,7 @@ var (
 	ErrMacAddrNotFound = errors.New("mac address not found")
 )
 
+// V1 is a UUID version 1 generator, based on timestamp and MAC address
 var V1 v1
 
 type v1 struct{}

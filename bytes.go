@@ -12,3 +12,13 @@ func FromBytes(data []byte) (UUID, error) {
 	_ = copy(result[:], data[:])
 	return result, nil
 }
+
+// MustFromBytes is like FromBytes but panics if the slice is not 16 bytes long.
+// It is convenient for tests and package-level variable initialisation.
+func MustFromBytes(data []byte) UUID {
+	u, err := FromBytes(data)
+	if err != nil {
+		panic(err)
+	}
+	return u
+}

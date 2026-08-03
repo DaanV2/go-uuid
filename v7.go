@@ -6,6 +6,7 @@ import (
 	"time"
 )
 
+// V7 is a UUID version 7 generator, a Unix timestamp UUID with random data (RFC 9562)
 var V7 v7
 
 type v7 struct{}

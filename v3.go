@@ -17,30 +17,31 @@ func (v3) Variant() Variant {
 	return Variant1
 }
 
+// New returns a new UUID version 3 from the MD5 hash of the given data
 func (v3) New(toHash []byte) UUID {
 	data := md5.Sum(toHash)
 
 	return createUUID(data, V3.Version(), V3.Variant())
 }
 
-// NewHex returns a new UUID version 4 as a hex string
+// NewHex returns a new UUID version 3 as a hex string
 func (v3) NewHex(toHash []byte) string {
 	return V3.New(toHash).StringHex()
 }
 
-// NewString returns a new UUID version 4 as a string
+// NewString returns a new UUID version 3 as a string
 func (v3) NewString(toHash []byte) string {
 	return V3.New(toHash).String()
 }
 
-// NewBatch returns a batch of UUID version 4
+// NewBatch returns a batch of UUID version 3
 func (v3) NewBatch(toHash []byte) []UUID {
 	n := len(toHash) / md5.Size
 
 	return V3.NewBatchWithSize(toHash, n)
 }
 
-// NewBatchWithSize returns a batch of UUID version 4 with a specific size
+// NewBatchWithSize returns a batch of UUID version 3 with a specific size
 func (v3) NewBatchWithSize(toHash []byte, n int) []UUID {
 	max := len(toHash) / md5.Size
 	if n > max {

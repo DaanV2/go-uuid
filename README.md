@@ -30,6 +30,40 @@ u := uuid.V8.From([]byte("custom"))   // From custom data
 // Batch generation
 u := uuid.V4.NewBatch(10)
 
+// Parsing (canonical, braced, urn:uuid: and dash-less forms are all accepted)
+u, err := uuid.Parse("01234567-89ab-cdef-0123-456789abcdef")
+u := uuid.MustParse("01234567-89ab-cdef-0123-456789abcdef")
+
+// Formatting
+u.String()    // 01234567-89ab-cdef-0123-456789abcdef
+u.StringHex() // 0123456789abcdef0123456789abcdef
+u.URN()       // urn:uuid:01234567-89ab-cdef-0123-456789abcdef
+
+// Comparing and sorting
+a.Equal(b)      // bool
+a.Compare(b)    // -1, 0 or 1
+slices.SortFunc(ids, uuid.UUID.Compare)
+
+```
+
+## Encoding & interoperability
+
+`UUID` implements the standard library interfaces so it works out of the box
+with JSON, XML, `database/sql`, and any package that relies on them:
+
+- `encoding.TextMarshaler` / `encoding.TextUnmarshaler`
+- `encoding.BinaryMarshaler` / `encoding.BinaryUnmarshaler`
+- `json.Marshaler` / `json.Unmarshaler`
+- `driver.Valuer` / `sql.Scanner`
+
+```go
+type User struct {
+    ID uuid.UUID `json:"id"` // encodes/decodes as a canonical string
+}
+
+// Works directly as a SQL argument and scan target.
+row := db.QueryRow("SELECT id FROM users WHERE id = ?", user.ID)
+_ = row.Scan(&user.ID)
 ```
 
 ## Supported UUID Versions
